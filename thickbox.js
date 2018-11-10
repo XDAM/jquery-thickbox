@@ -5,7 +5,7 @@
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 		  
-var tb_pathToImage = "images/loadingAnimation.gif";
+var tb_pathToImage = "/img/loadingAnimation.gif";
 
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 
@@ -226,7 +226,8 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 					$("#TB_window").css({display:"block"}); 
 				}else if(url.indexOf('TB_iframe') != -1){
 					tb_position();
-					if($.browser.safari){//safari needs help because it will not fire iframe onload
+                                                                                Modernizr.addTest('canloadiframe', 'load' in  $("#TB_window"));
+					if(!Modernizr.canloadiframe){//safari needs help because it will not fire iframe onload
 						$("#TB_load").remove();
 						$("#TB_window").css({display:"block"});
 					}
@@ -281,9 +282,7 @@ function tb_remove() {
 
 function tb_position() {
 $("#TB_window").css({marginLeft: '-' + parseInt((TB_WIDTH / 2),10) + 'px', width: TB_WIDTH + 'px'});
-	if ( !(jQuery.browser.msie && jQuery.browser.version < 7)) { // take away IE6
-		$("#TB_window").css({marginTop: '-' + parseInt((TB_HEIGHT / 2),10) + 'px'});
-	}
+	$("#TB_window").css({marginTop: '-' + parseInt((TB_HEIGHT / 2),10) + 'px'});
 }
 
 function tb_parseQuery ( query ) {
@@ -315,5 +314,3 @@ function tb_detectMacXFF() {
     return true;
   }
 }
-
-
