@@ -10,7 +10,6 @@ var tb_pathToImage = "/img/loadingAnimation.gif";
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 
 //on page load call tb_init
-
 $(document).ready(function(){   
 	tb_init('a.thickbox, area.thickbox, input.thickbox');//pass where to apply thickbox
 	imgLoader = new Image();// preload image
@@ -219,7 +218,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			
 				if(url.indexOf('TB_inline') != -1){	
 					$("#TB_ajaxContent").append($('#' + params['inlineId']).children());
-					$(document).on('unload', "#TB_window", function () {
+					$("#TB_window").on('unload', function () {
 						$('#' + params['inlineId']).append( $("#TB_ajaxContent").children() ); // move elements back when you're finished
 					});
 					tb_position();
